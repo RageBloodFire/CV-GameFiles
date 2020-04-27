@@ -1470,7 +1470,7 @@
 											"top": 834,
 											"width": 327,
 											"height": 13,
-											"text": "+matchResults(code: String): void",
+											"text": "+matchResults(): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1504,7 +1504,7 @@
 											"top": 864,
 											"width": 327,
 											"height": 13,
-											"text": "+checkPlayer(pts: int): boolean",
+											"text": "+checkHealth(player: Player): boolean",
 											"horizontalAlignment": 0
 										}
 									],
@@ -4576,15 +4576,6 @@
 									},
 									"type": "void",
 									"direction": "return"
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFxtJyBUu9qKGE=",
-									"_parent": {
-										"$ref": "AAAAAAFxtGGl++hxkEg="
-									},
-									"name": "code",
-									"type": "String"
 								}
 							]
 						},
@@ -4622,7 +4613,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFxqa32cy520Fc="
 							},
-							"name": "checkPlayer",
+							"name": "checkHealth",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -4630,8 +4621,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFxuHR/PLrtm84="
 									},
-									"name": "pts",
-									"type": "int"
+									"name": "player",
+									"type": "Player"
 								},
 								{
 									"_type": "UMLParameter",
