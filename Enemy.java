@@ -25,9 +25,15 @@ public boolean dropItem{
 		player.takeDamage(get)
 	}
 	return false;
-}
-public void infictDamage(Player palyer){
 	
-
-
+	
+	
+public void inflictDamage(Player player){
+	
+	if (getDamageRate() > getDamageThreshold){
+			player.takeDamage(get)
+		}
+		
+		return false;
+	}
 }
