@@ -15,9 +15,19 @@ public void Enemy(){
 	dropThreshold, damageThreshold=0;
 	damageHP,damagestam,damageRate=0;
 	dropRate=0;
-	
+	itemType= getItemtype()
+	name= getName()
 }
 
+public boolean dropItem{
+	
+	if (getDropRate >getDamageThreshold){
+		player.takeDamage(get)
+	}
+	return false;
+}
+public void infictDamage(Player palyer){
+	
 
 
 }
