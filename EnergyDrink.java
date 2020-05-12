@@ -9,8 +9,8 @@ public class EnergyDrink{
 	// Contructor
 	public void EnergyDrink(){
 		
-		setHpHeal( /*amount*/ );
-		setStamHeal( /*amount*/ );
+		setHpHeal(20);
+		setStamHeal(80);
 	}
 	
 	
