@@ -1402,7 +1402,7 @@
 											"top": 774,
 											"width": 327,
 											"height": 13,
-											"text": "+generateEnemy(): Enemy",
+											"text": "+generateEnemy(option: int): Enemy",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2407,7 +2407,7 @@
 									"font": "Arial;13;0",
 									"left": 623,
 									"top": 127,
-									"width": 12.65087890625,
+									"width": 13.83154296875,
 									"height": 13,
 									"alpha": -0.6125376516991041,
 									"distance": 20.223748416156685,
@@ -2614,7 +2614,7 @@
 									"font": "Arial;13;0",
 									"left": 599,
 									"top": 263,
-									"width": 12.65087890625,
+									"width": 13.83154296875,
 									"height": 13,
 									"alpha": 2.8283571706292725,
 									"distance": 61.814237842102365,
@@ -3224,7 +3224,7 @@
 									"font": "Arial;13;0",
 									"left": 847,
 									"top": 535,
-									"width": 12.65087890625,
+									"width": 13.83154296875,
 									"height": 13,
 									"alpha": 1.4191843693495811,
 									"distance": 15.811388300841896,
@@ -3431,7 +3431,7 @@
 									"font": "Arial;13;0",
 									"left": 1047,
 									"top": 552,
-									"width": 12.65087890625,
+									"width": 13.83154296875,
 									"height": 13,
 									"alpha": 2.9948429118026136,
 									"distance": 147.05441169852742,
@@ -4473,6 +4473,15 @@
 									},
 									"type": "Enemy",
 									"direction": "return"
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAFyC3kuBHqZ19c=",
+									"_parent": {
+										"$ref": "AAAAAAFxtGGYQebx3qg="
+									},
+									"name": "option",
+									"type": "int"
 								}
 							]
 						},

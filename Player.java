@@ -29,7 +29,7 @@ public class Player{
 		
 		hp, stamina = 100;
 		medkits, energyDrinks, score = 0;
-		name = nm;
+		name = nm.substring(0, 1).toUpperCase() + nm.substring(1);
 	}
 	
 	
