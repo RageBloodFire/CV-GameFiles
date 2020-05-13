@@ -1,7 +1,7 @@
-// Heavy Enemy class which implements Enemy class
+// Heavy Enemy class which extends Enemy class
 import java.util.*;
 
-public class HeavyEnemy implements Enemy{
+public class HeavyEnemy extends Enemy{
 	
 	private int dropThreshold;
 	private int damageThreshold;
@@ -13,15 +13,16 @@ public class HeavyEnemy implements Enemy{
 	
 	
 	// Constructor
-	public void HeavyEnemy(String nm){
-		
-		setName(nm);
+	public HeavyEnemy(){
+		Random rand = new Random();
+      
+		setName("Heavy");
 		setItemType("medkit");
 		setDamageHp(60);
 		setDamageThreshold(5);
 		setDropThreshold(5);
-		setDamageRate( random.nextInt(10) );
-		setDropRate( random.nextInt(10) );
+		setDamageRate( rand.nextInt(10) );
+		setDropRate( rand.nextInt(10) );
 	}
 	
 	
@@ -38,10 +39,9 @@ public class HeavyEnemy implements Enemy{
 	public void inflictDamage(Player player){
 		
 		if (getDamageRate() > getDamageThreshold()){
-			player.takeDamage(get)
+			player.takeDamage(getDamageHp());
 		}
 		
-		return false;
 	}
 	
 	

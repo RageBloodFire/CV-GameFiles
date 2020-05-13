@@ -1,8 +1,8 @@
 // Player class
-import Medkit;
-import EnergyDrink;
+//import Medkit;
+//import EnergyDrink;
 import java.util.*;
-import java.sys;
+import java.io.*;
 
 public class Player{
 	
@@ -18,18 +18,24 @@ public class Player{
 	private int temp = 0;
 	
 	// Constructor/s
-	public void Player(){
+	public Player(){
 		
-		hp, stamina = 100;
-		medkits, energyDrinks, score = 0;
-		name = "Player";
+		setHp(100);
+		setStamina(100);
+		setEnergyDrinks(0);
+		setMedkits(0);
+		setScore(0);
+		setName("Player");
 	}
 	
-	public void Player(String nm){
+	public Player(String nm){
 		
-		hp, stamina = 100;
-		medkits, energyDrinks, score = 0;
-		name = nm.substring(0, 1).toUpperCase() + nm.substring(1);
+		setHp(100);
+		setStamina(100);
+		setEnergyDrinks(0);
+		setMedkits(0);
+		setScore(0);
+		setName(nm.substring(0, 1).toUpperCase() + nm.substring(1));
 	}
 	
 	
@@ -54,7 +60,7 @@ public class Player{
 			setHp(0);
 		}
 		else{
-			setHp(tmep);
+			setHp(temp);
 		}
 	}
 	
@@ -78,7 +84,7 @@ public class Player{
 			setStamina(0);
 		}
 		else{
-			setStamina(tmep);
+			setStamina(temp);
 		}
 	}
 	
@@ -89,7 +95,7 @@ public class Player{
 			System.out.println("*You don't any more medkits!*");
 		}
 		else{
-			incrementHp(med.getHp());
+			incrementHp(med.getHpHeal());
 			incrementStamina(med.getStamHeal());
 			
 			temp-=1;
@@ -108,7 +114,7 @@ public class Player{
 		}
 		else{
 			incrementHp(drink.getHpHeal());
-			incrementStamina(drink.getStamina());
+			incrementStamina(drink.getStamHeal());
 			
 			temp-=1;
 			setEnergyDrinks(temp);
@@ -135,6 +141,7 @@ public class Player{
 		
 		// not yet decided how this will be coded
 		moved();
+		return true;
 	}
 	
 	public void advanceFloor(){
@@ -168,7 +175,7 @@ public class Player{
 	
 	public void takeDamage(int damage){
 		
-		temp = getHp() - damange;
+		temp = getHp() - damage;
 		
 		if (temp < 0){
 			setHp(0);

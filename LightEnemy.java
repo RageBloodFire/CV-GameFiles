@@ -1,7 +1,7 @@
-// Light Enemy class which implements Enemy class
+// Light Enemy class which extends Enemy class
 import java.util.*;
 
-public class LightEnemy implements Enemy{
+public class LightEnemy extends Enemy{
 	
 	private int dropThreshold;
 	private int damageThreshold;
@@ -13,22 +13,23 @@ public class LightEnemy implements Enemy{
 	
 	
 	// Constructor
-	public void LightEnemy(String nm){
+	public LightEnemy(){
+		Random rand = new Random();
 		
-		setName(nm);
+		setName("Light");
 		setItemType("drink");
 		setDamageHp(30);
 		setDamageThreshold(4);
 		setDropThreshold(4);
-		setDamageRate( random.nextInt(10) );
-		setDropRate( random.nextInt(10) );
+		setDamageRate( rand.nextInt(10) );
+		setDropRate( rand.nextInt(10) );
 	}
 	
 	
 	// Methods
 	public boolean dropItem(){
 		
-		if (getDropRate() > getDropThreshold){
+		if (getDropRate() > getDropThreshold()){
 			return true;
 		}
 		
@@ -37,11 +38,11 @@ public class LightEnemy implements Enemy{
 	
 	public void inflictDamage(Player player){
 		
-		if (getDamageRate() > getDamageThreshold){
-			player.takeDamage(get)
+		if (getDamageRate() > getDamageThreshold())
+		{
+			player.takeDamage(getDamageHp());
 		}
 		
-		return false;
 	}
 	
 	

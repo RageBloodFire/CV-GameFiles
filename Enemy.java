@@ -12,14 +12,80 @@ public class Enemy{
 	
 	
 	// Methods
-	public boolean dropItem(){}
+	public boolean dropItem(){
+		
+		if (getDropRate() > getDropThreshold()){
+			return true;
+		}
+		
+		return false;
+	}
 	
-	public void inflictDamage(Player player){}
-	
+	public void inflictDamage(Player player){
+		
+		if (getDamageRate() > getDamageThreshold()){
+			player.takeDamage(getDamageHp());
+		}
+
+	}
 	
 	
 	// Getters/Setters
-	
+	public int getDropThreshold() {
+		return this.dropThreshold;
+	}
+
+	public void setDropThreshold(int dropThreshold) {
+		this.dropThreshold = dropThreshold;
+	}
+
+	public int getDamageThreshold() {
+		return this.damageThreshold;
+	}
+
+	public void setDamageThreshold(int damageThreshold) {
+		this.damageThreshold = damageThreshold;
+	}
+
+	public int getDamageRate() {
+		return this.damageRate;
+	}
+
+	public void setDamageRate(int damageRate) {
+		this.damageRate = damageRate;
+	}
+
+	public int getDropRate() {
+		return this.dropRate;
+	}
+
+	public void setDropRate(int dropRate) {
+		this.dropRate = dropRate;
+	}
+
+	public int getDamageHp() {
+		return this.damageHp;
+	}
+
+	public void setDamageHp(int damageHp) {
+		this.damageHp = damageHp;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getItemType() {
+		return this.itemType;
+	}
+
+	public void setItemType(String itemType) {
+		this.itemType = itemType;
+	}
 	
 	
 }

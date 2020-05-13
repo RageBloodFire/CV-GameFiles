@@ -7,7 +7,7 @@ public class EnergyDrink{
 	
 	
 	// Contructor
-	public void EnergyDrink(){
+	public EnergyDrink(){
 		
 		setHpHeal(20);
 		setStamHeal(80);

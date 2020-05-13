@@ -7,7 +7,7 @@ public class Medkit{
 	
 	
 	// Contructor
-	public void Medkit(){
+	public Medkit(){
 		
 		setHpHeal(80);
 		setStamHeal(30);
