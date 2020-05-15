@@ -105,6 +105,11 @@ public class GameSystem {
 				+ "*******************************************************************\n"
 				+ "*******************************************************************\n\n";
 
+		slowType(message);
+	}
+	
+	public void slowType(String message){
+
 		char[] chars = message.toCharArray();
 		for (int i = 0; i < chars.length; i++) {
 			if (chars[i] == '*') {
@@ -125,8 +130,8 @@ public class GameSystem {
 				}
 			}
 		}
+
 	}
-	
 	
 	// Getters and Setters
 	public LightEnemy[] getLightEnemies(){
@@ -189,8 +194,8 @@ public class GameSystem {
 		Player p1;
 		Scanner optn = new Scanner(System.in);
 		GameSystem cVirus = new GameSystem();
-
-
+		
+		
 		
 		cVirus.startMessage();
 		
@@ -205,6 +210,7 @@ public class GameSystem {
 
 		System.out.println(p1.getStamina());
 		System.out.println("Hello " + p1.getName());
+		optn.close();
 	}
 	
 }
