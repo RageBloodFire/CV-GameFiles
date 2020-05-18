@@ -16,7 +16,7 @@ public class Menu{
             return true;
         }
 
-        System.out.println("\nInvalid Option!\n");
+        System.out.println("\nInvalid Option!");
         return false;
 
     }
@@ -54,7 +54,7 @@ public class Menu{
     }
 
     public String nextMenu(){
-        System.out.println("\t Advance to Next Floor \t(a)");
+        System.out.println("\n\t Advance to Next Floor \t(a)");
         System.out.println("\t Use Item \t\t(e)");
 
         x = scan.nextLine();

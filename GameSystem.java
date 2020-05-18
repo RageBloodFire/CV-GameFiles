@@ -21,6 +21,8 @@ public class GameSystem {
 	private int score = 0;
 	private int floorCount = 0;
 	private int killCount = 0;
+	private Scanner optn = new Scanner(System.in);
+	private boolean x = false;
 
 	// Constructor
 
@@ -37,6 +39,34 @@ public class GameSystem {
 
 		tutLight.setDamageRate(10);
 		tutLight.setDropRate(10);
+
+		System.out.println("\nEnter a preferred name or type 'N' to proceed.");
+		String name = optn.nextLine();
+		if(name.equalsIgnoreCase("N")){
+			player = new Player();
+		}
+		else{
+			player = new Player(name);
+		}
+
+		sleep();
+		startMessage();
+		sleep();
+		
+		try{
+			
+			while(x==false){
+				x = menu.advanceMenu();
+			}
+	
+		}
+		catch(Exception e){
+			e.getMessage();
+			e.printStackTrace();
+		}
+		
+
+		optn.close();
 	}
 
 	public Enemy generateEnemy(int option) {
@@ -99,7 +129,7 @@ public class GameSystem {
 		sleep();
 		slowType("\nYou found a hatchet you can use as a weapon.");
 		sleep();
-		slowType("\nOtherwise there isn't anything interesting here.");
+		slowType("\nOtherwise there isn't anything interesting here.\n");
 	}
 	
 	public static void slowType(String message){
@@ -117,7 +147,7 @@ public class GameSystem {
 			} else {
 				System.out.print(chars[i]);
 				try {
-					Thread.sleep(50);
+					Thread.sleep(55);
 				} catch (InterruptedException e) {
 					
 					e.printStackTrace();
@@ -264,32 +294,9 @@ public class GameSystem {
 	// Main Execution Area
 	public static void main(String[] args){
 
-		// Variables
-		Scanner optn = new Scanner(System.in);
 		GameSystem cVirus = new GameSystem();
-		boolean x = false;
-	
+		cVirus.generateEnvironment();
 		
-		System.out.println("\nEnter a preferred name or type 'N' to proceed.");
-		String name = optn.nextLine();
-		if(name.equalsIgnoreCase("N")){
-			cVirus.player = new Player();
-		}
-		else{
-			cVirus.player = new Player(name);
-		}
-
-		sleep();
-		cVirus.startMessage();
-		sleep();
-
-		while(x=false){
-			x = cVirus.menu.advanceMenu();
-		}
-
-		
-
-		optn.close();
 	}
 	
 }
