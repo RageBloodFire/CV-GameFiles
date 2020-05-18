@@ -1,8 +1,6 @@
 // Player class
 //import Medkit;
 //import EnergyDrink;
-import java.util.*;
-import java.io.*;
 
 public class Player{
 	
@@ -138,20 +136,28 @@ public class Player{
 	}
 	
 	public boolean useHatchet(){
-		
-		// not yet decided how this will be coded
+		//Triggers the system of fighting in Game System
+		if(getStamina()==0 || getHp()==0){
+			return false;
+		}
 		moved();
 		return true;
 	}
 	
-	public void advanceFloor(){
-		
-		// not yet decided how this will be coded
-		moved();
+	public boolean advanceFloor(String stry, int kill){
+		//Can only advance if all enemies on current floor have been killed
+		if(kill==0 || kill==1 || kill==4 || kill==7 || kill==10){
+			System.out.println(stry);
+			moved();
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
 	public void moved(){
-		score +=10;
+		score +=20;
 	}
 	
 	public void addItem(String option){
@@ -241,5 +247,43 @@ public class Player{
 		name = nm;
 	}
 	
+
+	//Tetsing
+	// public static void main(String[] args){
+
+	// 	Player p = new Player("Bombo");
+
+	// 	p.addItem("drink");
+	// 	p.addItem("drink");
+	// 	p.addItem("medkit");
+
+	// 	System.out.println("\t" + p.getEnergyDrinks() + "\n" + p.getMedkits());
+	// 	p.reduceHp(40);
+	// 	p.reduceStamina(80);
+	// 	System.out.println(p.getHp());
+	// 	System.out.println(p.getStamina());
+
+	// 	p.useItem("drink");
+
+	// 	System.out.println(p.getHp());
+	// 	System.out.println(p.getStamina());
+
+	// 	p.takeDamage(20);
+
+	// 	System.out.println(p.getHp());
+	// 	System.out.println(p.getStamina());
+
+	// 	p.useItem("medkit");
+
+	// 	System.out.println(p.getHp());
+	// 	System.out.println(p.getStamina());
+
+	// 	System.out.println(p.useHatchet());
+	// 	System.out.println(p.advanceFloor("fuckery", 5));
+	// 	System.out.println(p.advanceFloor("pussyBack", 7));
+
+	// 	p.reduceStamina(10);
+	// 	System.out.println(p.useHatchet());
+	// }
 	
 }

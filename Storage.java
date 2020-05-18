@@ -1,48 +1,77 @@
+
 // Sorage Class to store scores
 import java.io.*;
 import java.util.*;
 
 public class Storage {
-    
-    public void writescore(String name, int score) {
-        try 
-        {
-            FileWriter myWriter = new FileWriter("scores.txt");
-            myWriter.write(name + ":" + score);
-            myWriter.close();
-        } catch (FileNotFoundException e) {
 
-            System.out.println("Error");
+    public void writeScore(String text, int score) {
+        try {
+            String data = "";
+
+            File myObj = new File("scores.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                data += myReader.nextLine() + "\n";
+
+            }
+
+            if (data != "") {
+                FileWriter myWriter = new FileWriter("scores.txt");
+                String writethis = data + '\n' + text + ":" + score;
+                //System.out.println(writethis);
+                myWriter.write(writethis);
+                myWriter.close();
+
+            } else {
+                FileWriter myWriter = new FileWriter("scores.txt");
+                String writethis = text + ":" + score;
+                //System.out.println(writethis);
+                myWriter.write(writethis);
+                myWriter.close();
+
+            }
+            myReader.close();
+
         } catch (IOException e) {
-            System.out.println("Error");
+
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
     }
 
     public void getScores() {
-		try 
-        {
-            System.out.println("*************\t   Scores \t*****************\n");
+        String data = "";
+        try {
+            System.out.println("*************\t   Scores \t*******************\n");
             File myObj = new File("scores.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                System.out.println("***\t\t\t" + data + "\t\t\t***\n");
+                data += myReader.nextLine() + "\n";
+
             }
+            System.out.println(data);
             myReader.close();
-            System.out.println("******************************\n");
+            System.out.println("***************************************************\n");
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
 
-		catch (FileNotFoundException e) 
-		{
-			
-			System.out.println("File not found");
-		}
-	
     }
-    
-    public static void main(String[] args){
 
+    // Testing
+    // public static void main(String[] args) {
+
+    //     Storage st = new Storage();
+
+    //     st.writeScore("Roach", 2998);
+    //     st.writeScore("Madil", 458);
+    //     st.writeScore("Bredda Shark", 908);
+    //     System.out.println("\n\n\n");
         
-    }
+    //     st.getScores();
+
+    // }
 
 }

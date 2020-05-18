@@ -21,12 +21,13 @@ public class Enemy{
 		return false;
 	}
 	
-	public void inflictDamage(Player player){
+	public boolean inflictDamage(Player player){
 		
 		if (getDamageRate() > getDamageThreshold()){
 			player.takeDamage(getDamageHp());
+			return true;
 		}
-
+		return false;
 	}
 	
 	
