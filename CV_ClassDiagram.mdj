@@ -1521,7 +1521,7 @@
 											"top": 864,
 											"width": 327,
 											"height": 13,
-											"text": "+generateEnemy(option: int): Object",
+											"text": "+generateEnemy(option: int): Enemy",
 											"horizontalAlignment": 0
 										},
 										{
@@ -6307,7 +6307,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFxtGGYQebx3qg="
 									},
-									"type": "Object",
+									"type": "Enemy",
 									"direction": "return"
 								},
 								{

@@ -34,6 +34,7 @@ public class Menu{
             return itemMenu();
         }
         else{
+            System.out.println("\nInvalid Option!");
             return "wrong";
         }
     }
@@ -50,6 +51,7 @@ public class Menu{
         else if(x.equalsIgnoreCase("2")){
             return "drink";
         }
+        System.out.println("\nInvalid Option!");
         return "err";
     }
 
@@ -65,7 +67,7 @@ public class Menu{
         else if(x.equalsIgnoreCase("e")){
             return itemMenu();
         }
-    
+        System.out.println("\nInvalid Option!");
         return "wrong";
     }
 

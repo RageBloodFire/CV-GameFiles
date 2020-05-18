@@ -1,7 +1,6 @@
 
 // System Class
 import java.util.*;
-//import java.util.concurrent.TimeUnit;
 //import LightEnemy;
 //import HeavyEnemy;
 //import Player;
@@ -29,6 +28,9 @@ public class GameSystem {
 	// Methods
 	public void generateEnvironment() {
 		
+		String op = "";
+		boolean y;
+
 		for(int i=0;i<5;i++){
 			heavyEnemies.add(generateEnemy(2));
 		}
@@ -39,7 +41,7 @@ public class GameSystem {
 
 		tutLight.setDamageRate(10);
 		tutLight.setDropRate(10);
-
+		
 		System.out.println("\nEnter a preferred name or type 'N' to proceed.");
 		String name = optn.nextLine();
 		if(name.equalsIgnoreCase("N")){
@@ -55,9 +57,86 @@ public class GameSystem {
 		
 		try{
 			
+			//ROOF ADVANCE
 			while(x==false){
 				x = menu.advanceMenu();
 			}
+			player.advanceFloor(killCount);
+			deathMessage(player);
+			slowType(story.getlevel0());
+			sleep();
+
+
+			//FOOR 1
+			slowType("\nThere is a light zombie ahead.\n");
+			while(!op.equalsIgnoreCase("fight")){
+				op = menu.fightMenu();
+
+				if(op.equalsIgnoreCase("drink") || op.equalsIgnoreCase("medkit")){
+					player.useItem(op);
+				}
+			}
+			y = player.useHatchet();
+			if(!y){
+				deathMessage(player);
+			}
+			matchResults(tutLight, player);
+			deathMessage(player);
+			slowType("\nYou can use items obtained from fighting to heal yourself.\n");
+
+
+			//ADVANCE TO NEXT FLOOR
+			advanceHelper();
+			slowType(story.getlevel1());
+			sleep();
+
+
+			//FLOOR 2
+			floorHelper();
+
+
+			//ADVANCE TO NEXT FLOOR
+			advanceHelper();
+			slowType(story.getlevel2());
+			sleep();
+
+
+			//FLOOR 3
+			floorHelper();
+
+
+			//ADVANCE TO NEXT FLOOR
+			advanceHelper();
+			slowType(story.getlevel3());
+			sleep();
+
+
+			//FLOOR 4
+			floorHelper();
+
+
+			//ADVANCE TO NEXT FLOOR
+			advanceHelper();
+			slowType(story.getlevel4());
+			sleep();
+
+
+			// ENDGAME STORY
+			slowType(story.getEnd());
+			sleep();
+			if(player.getScore()<260){
+				slowType(story.getEndGood());
+			}
+			else if(player.getScore()>=260){
+				slowType(story.getEndBad());
+			}
+
+
+			// SAVE SCORE AND EXIT
+			store.writeScore(player.getName(), player.getScore());
+			store.getScores();
+
+			System.exit(0);
 	
 		}
 		catch(Exception e){
@@ -69,10 +148,123 @@ public class GameSystem {
 		optn.close();
 	}
 
+	public void advanceHelper(){
+		//ADVANCE TO NEXT FLOOR
+		String op = "";
+		boolean y;
+		while(!op.equalsIgnoreCase("adv")){
+			op = menu.nextMenu();
+
+			if(op.equalsIgnoreCase("drink") || op.equalsIgnoreCase("medkit")){
+				player.useItem(op);
+			}
+		}
+		y = player.advanceFloor(killCount);
+		if(!y){
+			System.exit(0);
+		}
+		deathMessage(player);
+	}
+
+	public void floorHelper(){
+		//FLOOR PLAY
+		for(int i=0;i<3;i++){
+			Random ran = new Random();
+			String op = "";
+			boolean y;			
+			if(ran.nextInt(2)==0){
+				if(!lightEnemies.isEmpty()){
+					Enemy enemy = lightEnemies.get(0);
+
+					slowType("\nThere is a light zombie ahead.\n");
+					while(!op.equalsIgnoreCase("fight")){
+						op = menu.fightMenu();
+
+						if(op.equalsIgnoreCase("drink") || op.equalsIgnoreCase("medkit")){
+							player.useItem(op);
+						}
+					}
+					y = player.useHatchet();
+					if(!y){
+						deathMessage(player);
+					}
+					matchResults(enemy, player);
+					deathMessage(player);
+
+					lightEnemies.remove(0);
+				}
+				else{
+					Enemy enemy2 = heavyEnemies.get(0);
+
+					slowType("\nThere is a heavy zombie ahead.\n");
+					while(!op.equalsIgnoreCase("fight")){
+						op = menu.fightMenu();
+
+						if(op.equalsIgnoreCase("drink") || op.equalsIgnoreCase("medkit")){
+							player.useItem(op);
+						}
+					}
+					y = player.useHatchet();
+					if(!y){
+						deathMessage(player);
+					}
+					matchResults(enemy2, player);
+					deathMessage(player);
+
+					heavyEnemies.remove(0);
+				}
+			}
+			else{
+				if(!heavyEnemies.isEmpty()){
+					Enemy enemy2 = heavyEnemies.get(0);
+
+					slowType("\nThere is a heavy zombie ahead.\n");
+					while(!op.equalsIgnoreCase("fight")){
+						op = menu.fightMenu();
+
+						if(op.equalsIgnoreCase("drink") || op.equalsIgnoreCase("medkit")){
+							player.useItem(op);
+						}
+					}
+					y = player.useHatchet();
+					if(!y){
+						deathMessage(player);
+					}
+					matchResults(enemy2, player);
+					deathMessage(player);
+
+					heavyEnemies.remove(0);
+
+				}
+				else{
+					Enemy enemy = lightEnemies.get(0);
+
+					slowType("\nThere is a light zombie ahead.\n");
+					while(!op.equalsIgnoreCase("fight")){
+						op = menu.fightMenu();
+
+						if(op.equalsIgnoreCase("drink") || op.equalsIgnoreCase("medkit")){
+							player.useItem(op);
+						}
+					}
+					y = player.useHatchet();
+					if(!y){
+						deathMessage(player);
+					}
+					matchResults(enemy, player);
+					deathMessage(player);
+
+					lightEnemies.remove(0);
+				}
+			}
+		}
+	}
+
 	public Enemy generateEnemy(int option) {
 		if (option == 1) {
 			return generateLightEnemy();
-		} else {
+		} 
+		else {
 			return generateHeavyEnemy();
 		}
 	}
@@ -112,7 +304,11 @@ public class GameSystem {
 				+ "*******************************************************************\n\n";
 		
 
-		slowType("\nWelcome to the Game " + player.getName() + "\n" + "You can press 'Ctrl + C' to quit at any time.\n\n");
+		slowType("\nWelcome to the Game " + player.getName());
+		slowType("\nYou will start with 100:HP and 100:Stamina.");
+		slowType("\nYou will progressively lose 10:stamina with each option choice.");
+		slowType("\nPLAN YOUR MOVES CAREFULLY TO REDUCE UNNECESSARY NAVIGATION.");
+		slowType("\nYou can press 'Ctrl + C' to quit at any time.\n\n");
 		sleep();
 
 		slowType(message);
@@ -159,25 +355,23 @@ public class GameSystem {
 
 	public void matchResults(Enemy en, Player ply){
 
-		System.out.println("\tYou just faught the " + en.getName() + "enemy.");
+		slowType("\nYou faught the " + en.getName() + " enemy.");
 
-		if(en.dropItem() && en.inflictDamage(ply)){
-			System.out.println("\t You took " + en.getDamageHp() + "damage, you now have " + ply.getHp() + "HP and " 
-			+ ply.getStamina() + " Stamina left.");
-			System.out.println("\t You obtained an item: " + en.getItemType());
-		}
-		else if(!en.dropItem() && en.inflictDamage(ply)){
-			System.out.println("\t You took " + en.getDamageHp() + "damage, you now have " + ply.getHp() + "HP and " 
-			+ ply.getStamina() + " Stamina left.");
-			System.out.println("\t The zombie did not drop anything.");
-		}
-		else if(en.dropItem() && !en.inflictDamage(ply)){
-			System.out.println("\t You didn't take any damage");
-			System.out.println("\t You obtained an item: " + en.getItemType());
+		if(en.inflictDamage(ply)){
+			slowType("\nYou took " + en.getDamageHp() + ":damage, you now have " + ply.getHp() + ":HP and " 
+			+ ply.getStamina() + ":Stamina left.");
 		}
 		else{
-			System.out.println("\t You didn't take any damage");
-			System.out.println("\t The zombie did not drop anything.");
+			slowType("\nYou didn't take any damage");
+		}
+
+
+		if(en.dropItem()){
+			slowType("\nYou obtained an item.\n");
+			ply.addItem(en.getItemType());
+		}
+		else{
+			slowType("\nThe zombie did not drop anything.\n");
 		}
 		
 	}
@@ -192,11 +386,11 @@ public class GameSystem {
 
 	public void deathMessage(Player ply){
 
-		if(!checkHealth(ply) && ply.getHp()==0){
-			System.out.println("*******************************************************************\n"
+		if(ply.getHp()==0){
+			slowType("\n*******************************************************************\n"
             + "*******************************************************************\n"
             + "***\t\t\t\t\t\t\t\t***\n"
-            + "***\t GAME OVER \t\t\t\t\t***\n"
+            + "***\t GAME OVER \t\t\t\t\t\t***\n"
             + "***\t\t\t\t\t\t\t\t***\n"
             + "***\t You died from an infection. \t\t\t\t***\n" 
             + "***\t\t\t\t\t\t\t\t***\n"
@@ -207,13 +401,13 @@ public class GameSystem {
 
 			System.exit(0);
 		}
-		else if(!checkHealth(ply) && ply.getStamina()==0){
-			System.out.println("*******************************************************************\n"
+		else if(ply.getStamina()==0){
+			slowType("\n*******************************************************************\n"
             + "*******************************************************************\n"
             + "***\t\t\t\t\t\t\t\t***\n"
-            + "***\t GAME OVER \t\t\t\t\t***\n"
+            + "***\t GAME OVER \t\t\t\t\t\t***\n"
             + "***\t\t\t\t\t\t\t\t***\n"
-            + "***\t You died from extreme exhaustion. \t\t\t\t***\n" 
+            + "***\t You died from extreme exhaustion. \t\t\t***\n" 
             + "***\t\t\t\t\t\t\t\t***\n"
             + "*******************************************************************\n"
 			+ "*******************************************************************\n\n");

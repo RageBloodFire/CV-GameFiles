@@ -19,7 +19,7 @@ public class LightEnemy extends Enemy{
 		setName("Light");
 		setItemType("drink");
 		setDamageHp(30);
-		setDamageThreshold(4);
+		setDamageThreshold(6);
 		setDropThreshold(4);
 		setDamageRate( rand.nextInt(10) );
 		setDropRate( rand.nextInt(10) );

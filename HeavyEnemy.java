@@ -20,7 +20,7 @@ public class HeavyEnemy extends Enemy{
 		setItemType("medkit");
 		setDamageHp(60);
 		setDamageThreshold(5);
-		setDropThreshold(5);
+		setDropThreshold(7);
 		setDamageRate( rand.nextInt(10) );
 		setDropRate( rand.nextInt(10) );
 	}

@@ -33,91 +33,95 @@ public class Player{
 		setEnergyDrinks(0);
 		setMedkits(0);
 		setScore(0);
-		setName(nm.substring(0, 1).toUpperCase() + nm.substring(1));
+		setName(nm.substring(0, 1).toUpperCase() + nm.substring(1).toLowerCase());
 	}
 	
 	
 	// Methods
 	public void incrementHp(int pts){
+		int inc = 0;
+		inc = getHp() + pts;
 		
-		temp = getHp() + pts;
-		
-		if (temp > 100){
+		if (inc > 100){
 			setHp(100);
 		}
 		else{
-			setHp(temp);
+			setHp(inc);
 		}
 	}
 	
 	public void reduceHp(int pts){
+		int re = 0;
+		re = getHp() - pts;
 		
-		temp = getHp() - pts;
-		
-		if (temp < 0){
+		if (re < 0){
 			setHp(0);
 		}
 		else{
-			setHp(temp);
+			setHp(re);
 		}
 	}
 	
 	public void incrementStamina(int pts){
+		int in = 0;
+		in = getStamina() + pts;
 		
-		temp = getStamina() + pts;
-		
-		if (temp > 100){
+		if (in > 100){
 			setStamina(100);
 		}
 		else{
-			setStamina(temp);
+			setStamina(in);
 		}
 	}
 	
 	public void reduceStamina(int pts){
+		int st = 0;
+		st = getStamina() - pts;
 		
-		temp = getStamina() - pts;
-		
-		if (temp < 0){
+		if (st < 0){
 			setStamina(0);
 		}
 		else{
-			setStamina(temp);
+			setStamina(st);
 		}
 	}
 	
 	public void useMedkit(){
-		temp = getMedkits();
+		int t = 0;
+		t = getMedkits();
 		
-		if (temp < 1){
-			System.out.println("*You don't any more medkits!*");
+		if (t < 1){
+			System.out.println("\n*You don't any more medkits!*");
 		}
-		else{
+		else if(t >= 1){
+			moved();
 			incrementHp(med.getHpHeal());
 			incrementStamina(med.getStamHeal());
 			
-			temp-=1;
-			setMedkits(temp);
-			moved();
-			System.out.println("Vitals replenished.");
+			t--;
+			setMedkits(t);
+			System.out.println("\nVitals replenished.");
+			System.out.println(getHp() + ":HP\t" + getStamina() + ":Stamina");
 		}
 		
 	}
 	
 	public void useEnergyDrink(){
-		temp = getEnergyDrinks();
+		int t = 0;
+		t = getEnergyDrinks();
 		
-		if (temp < 1){
-			System.out.println("*You don't any more energy drinks!*");
+		if (t < 1){
+			System.out.println("\n*You don't any more energy drinks!*");
 		}
-		else{
+		else if(t >= 1){
+			moved();
 			incrementHp(drink.getHpHeal());
 			incrementStamina(drink.getStamHeal());
 			
-			temp-=1;
-			setEnergyDrinks(temp);
-			moved();
-			System.out.println("Vitals replenished.");
+			t--;
+			setEnergyDrinks(t);
+			System.out.println("\nVitals replenished.");
+			System.out.println(getHp() + ":HP\t" + getStamina() + ":Stamina");
 		}
 		
 	}
@@ -131,7 +135,7 @@ public class Player{
 			useMedkit();
 		}
 		else{
-			System.out.println("*Invalid Option!*");
+			System.out.println("\n*Invalid Option!*");
 		}
 	}
 	
@@ -144,19 +148,20 @@ public class Player{
 		return true;
 	}
 	
-	public boolean advanceFloor(String stry, int kill){
+	public boolean advanceFloor(int kill){
 		//Can only advance if all enemies on current floor have been killed
 		if(kill==0 || kill==1 || kill==4 || kill==7 || kill==10){
-			System.out.println(stry);
 			moved();
 			return true;
 		}
 		else{
+			System.out.println("\nSomething isn't right.");
 			return false;
 		}
 	}
 	
 	public void moved(){
+		reduceStamina(10);
 		score +=20;
 	}
 	
@@ -167,27 +172,29 @@ public class Player{
 		if(option.equals("drink")){
 			temp = getEnergyDrinks() + 1;
 			setEnergyDrinks(temp);
-			System.out.println("Energy drink obtained.");
+			System.out.println("\nEnergy drink obtained.");
 		}
 		else if(option.equals("medkit")){
 			temp = getMedkits() + 1;
 			setMedkits(temp);
-			System.out.println("Medkit obtained.");
+			System.out.println("\nMedkit obtained.");
 		}
 		else{
-			System.out.println("*Invalid Option!*");
+			System.out.println("\n*Something isn't right.*");
 		}
 	}
 	
 	public void takeDamage(int damage){
+		int take = 0;
+		take = getHp() - damage;
 		
-		temp = getHp() - damage;
-		
-		if (temp < 0){
+		if (take < 0){
+			moved();
 			setHp(0);
 		}
 		else{
-			setHp(temp);
+			moved();
+			setHp(take);
 		}
 	}
 	
