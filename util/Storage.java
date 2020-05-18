@@ -1,5 +1,6 @@
-
 // Sorage Class to store scores
+package cvirus.util;
+
 import java.io.*;
 import java.util.*;
 
@@ -9,7 +10,7 @@ public class Storage {
         try {
             String data = "";
 
-            File myObj = new File("scores.txt");
+            File myObj = new File("/home/robert/Desktop/cvirus/util/scores.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 data += myReader.nextLine() + "\n";

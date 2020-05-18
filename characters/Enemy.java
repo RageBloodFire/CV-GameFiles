@@ -1,4 +1,5 @@
 // Enemy class
+package cvirus.characters;
 
 public class Enemy{
 	

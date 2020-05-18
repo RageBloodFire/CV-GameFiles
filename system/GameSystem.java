@@ -1,9 +1,10 @@
-
 // System Class
+package cvirus.system;
+
 import java.util.*;
-//import LightEnemy;
-//import HeavyEnemy;
-//import Player;
+import cvirus.util.*;
+import cvirus.characters.*;
+import cvirus.items.*;
 
 public class GameSystem {
 
@@ -343,7 +344,8 @@ public class GameSystem {
 			} else {
 				System.out.print(chars[i]);
 				try {
-					Thread.sleep(55);
+					//actual time should be 30
+					Thread.sleep(5);
 				} catch (InterruptedException e) {
 					
 					e.printStackTrace();
