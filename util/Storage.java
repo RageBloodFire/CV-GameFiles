@@ -18,14 +18,14 @@ public class Storage {
             }
 
             if (data != "") {
-                FileWriter myWriter = new FileWriter("scores.txt");
+                FileWriter myWriter = new FileWriter("/home/robert/Desktop/cvirus/util/scores.txt");
                 String writethis = data + '\n' + text + ":" + score;
                 //System.out.println(writethis);
                 myWriter.write(writethis);
                 myWriter.close();
 
             } else {
-                FileWriter myWriter = new FileWriter("scores.txt");
+                FileWriter myWriter = new FileWriter("/home/robert/Desktop/cvirus/util/scores.txt");
                 String writethis = text + ":" + score;
                 //System.out.println(writethis);
                 myWriter.write(writethis);
@@ -45,7 +45,7 @@ public class Storage {
         String data = "";
         try {
             System.out.println("*************\t   Scores \t*******************\n");
-            File myObj = new File("scores.txt");
+            File myObj = new File("/home/robert/Desktop/cvirus/util/scores.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 data += myReader.nextLine() + "\n";
