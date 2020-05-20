@@ -1,9 +1,7 @@
-// Light Enemy class which extends Enemy class
-package cvirus.characters;
-
+// Heavy Enemy class which extends Enemy class
 import java.util.*;
 
-public class LightEnemy extends Enemy{
+public class HeavyEnemy extends Enemy{
 	
 	private int dropThreshold;
 	private int damageThreshold;
@@ -15,14 +13,14 @@ public class LightEnemy extends Enemy{
 	
 	
 	// Constructor
-	public LightEnemy(){
+	public HeavyEnemy(){
 		Random rand = new Random();
-		
-		setName("Light");
-		setItemType("drink");
-		setDamageHp(30);
-		setDamageThreshold(6);
-		setDropThreshold(4);
+      
+		setName("Heavy");
+		setItemType("medkit");
+		setDamageHp(60);
+		setDamageThreshold(5);
+		setDropThreshold(7);
 		setDamageRate( rand.nextInt(10) );
 		setDropRate( rand.nextInt(10) );
 	}
@@ -40,8 +38,7 @@ public class LightEnemy extends Enemy{
 	
 	public boolean inflictDamage(Player player){
 		
-		if (getDamageRate() > getDamageThreshold())
-		{
+		if (getDamageRate() > getDamageThreshold()){
 			player.takeDamage(getDamageHp());
 			return true;
 		}
@@ -106,12 +103,12 @@ public class LightEnemy extends Enemy{
 	public void setItemType(String it){
 		itemType = it;
 	}
-	
+
 
 	//Testing
 	// public static void main(String[] args){
 
-	// 	LightEnemy l1 = new LightEnemy();
+	// 	HeavyEnemy l1 = new HeavyEnemy();
 
 	// 	System.out.println(l1.dropItem());
 	// 	System.out.println(l1.getDamageHp());
@@ -122,7 +119,7 @@ public class LightEnemy extends Enemy{
 	// 	System.out.println(l1.getItemType());
 	// 	System.out.println(l1.getName());
 		
-	// 	LightEnemy l2 = new LightEnemy();
+	// 	HeavyEnemy l2 = new HeavyEnemy();
 
 	// 	System.out.println(l2.dropItem());
 	// 	System.out.println(l2.getDamageHp());

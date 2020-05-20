@@ -1,17 +1,16 @@
-// Medkit class
-package cvirus.items;
+// Energy Drink class
 
-public class Medkit{
+public class EnergyDrink{
 	
 	private int hpHeal;
 	private int stamHeal;
 	
 	
 	// Contructor
-	public Medkit(){
+	public EnergyDrink(){
 		
-		setHpHeal(80);
-		setStamHeal(30);
+		setHpHeal(20);
+		setStamHeal(80);
 	}
 	
 	

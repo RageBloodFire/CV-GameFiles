@@ -1,6 +1,4 @@
 //Menu Class
-package cvirus.util;
-
 import java.util.*;
 
 public class Menu{

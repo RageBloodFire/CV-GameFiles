@@ -1,5 +1,4 @@
 // Story Class
-package cvirus.util;
 
 public class Story {
     

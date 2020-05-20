@@ -1,6 +1,6 @@
 // Player class
-package cvirus.characters;
-import cvirus.items.*;
+//import Medkit;
+//import EnergyDrink;
 
 public class Player{
 	
