@@ -21,7 +21,9 @@ To Compile:
 
 To Run:
 
-1. After compiling the application, type in the terminal>> java cvirus.system.GameSystem
+1. (Ubuntu) After compiling the application, type in the terminal>> java cvirus.system.GameSystem.
+1b. (Windows) Navigate to the 'cvirus win10' folder and open in terminal.
+2b. (Windows) Type in the terminal>> java GameSystem.
 
 ------------------------------------------------------------------------------------
 To execute the application in an IDE:
